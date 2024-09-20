@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getLocalState } from './helper'
+import { getLocalState, setLocalState } from './helper'
 
 export const useChatStore = defineStore('chat-store', {
     state: (): Chat.ChatState => getLocalState(),
@@ -11,6 +11,13 @@ export const useChatStore = defineStore('chat-store', {
         }
     },
     actions: {
-        
+        setUsingContext(context: boolean) {
+            this.usingContext = context
+            this.recordState()
+        },
+        // 更新缓存
+        recordState() {
+            setLocalState(this.$state)
+        }
     }
 })

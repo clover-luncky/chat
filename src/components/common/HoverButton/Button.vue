@@ -8,5 +8,7 @@
         (e: 'click'): void
     }
     const emit = defineEmits<Emit>()
-    function handleClick() {}
+    function handleClick() {
+      emit('click')
+    }
 </script>
