@@ -5,10 +5,10 @@ declare namespace Chat {
         inversion?: boolean
         error?: boolean
         loading?: boolean
-        conversationOptions?: ConversationOptions | null
+        conversationOptions?: ConversationRequest | null
         requestOptions: {
             prompt: string;
-            options?: ConversationOptions | null
+            options?: ConversationRequest | null
         }
     }
 
@@ -28,8 +28,33 @@ declare namespace Chat {
         }[]
     }
 
-    interface ConversationOptions {
+    interface ConversationRequest {
         conversationId?: string
         parentMessageId?: string
+    }
+
+    interface ConversationResponse {
+        conversationId: string
+        detail: {
+            choices: {
+                finish_reason: string;
+                index: number;
+                logprobs: any;
+                text: string
+            }[]
+            created: number
+            id: string
+            model: string
+            object: string
+            usage: {
+                completion_tokens: number;
+                prompt_tokens: number;
+                total_token: number
+            }
+        }
+        id: string
+        parentMessageId: string
+        role: string
+        text: string
     }
 }
