@@ -1,5 +1,7 @@
 export default {
-    common: {},
+    common: {
+        unauthorizedTips: 'Unauthorized, please verify first.'
+    },
     chat: {
         newChatTitle: 'New Chat'
     },

@@ -77,6 +77,13 @@
               />
             </template>
           </NAutoComplete>
+          <NButton type="primary" :disabled="buttonDisabled" @click="handleSubmit">
+            <template #icon>
+              <span class="dark:text-black">
+                <SvgIcon icon="ri:send-plane-fill" />
+              </span>
+            </template>
+          </NButton>
         </div>
       </div>
     </footer>
@@ -148,6 +155,10 @@
   const { scrollRef, scrollToBottom, scrollToBottomIfAtBottom } = useScroll()
   const conversationList = computed(() => dataSources.value.filter(item => (!item.inversion && !!item.conversationOptions)))
   const openLongReply = import.meta.env.VITE_GLOB_LONG_REPLY === 'true'
+  // 按钮置灰事件
+  const buttonDisabled = computed(() => {
+    return loading.value || !prompt.value || prompt.value.trim() === ''
+  })
 
   // 导出
   function handleExport() {
@@ -396,6 +407,11 @@
   function handleEnter(event: KeyboardEvent) {
     if(!isMobile.value) {
       if(event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault()
+        handleSubmit()
+      }
+    } else {
+      if(event.key === 'Enter' && event.ctrlKey) {
         event.preventDefault()
         handleSubmit()
       }

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getToken } from "./helper";
+import { getToken, setToken, removeToken } from "./helper";
 import { Session } from "inspector";
 
 interface SessionResponse {
@@ -23,12 +23,23 @@ export const useAuthStore = defineStore('auth-store', {
         }
     },
     actions: {
+        // 获取session认证
         async getSession() {
             try {
-                const {} = await fetchSession<SessionResponse>()
+                const { data } = await fetchSession<SessionResponse>()
+                this.session = { ...data }
+                return Promise.resolve(data)
             } catch (error) {
                 return Promise.reject(error)
             }
+        },
+        setToken(token: string) {
+            this.token = token
+            setToken(token)
+        },
+        removeToken() {
+            this.token = undefined
+            removeToken()
         }
     }
 })
