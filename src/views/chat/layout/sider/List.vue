@@ -30,14 +30,20 @@
               class="absolute z-10 flex visible right-1"
             >
               <template v-if="item.isEdit">
-                <button class="p-1">
-                  <SvgIcon icon="ri:edit-line"  @click="handleEdit(item, false, $event)" />
+                <button class="p-1" @click="handleEdit(item, false, $event)">
+                  <SvgIcon icon="ri:save-line" />
                 </button>
+              </template>
+              <template v-else>
                 <NPopconfirm placement="bottom" @positive-click="handleDeleteDebounce(index, $event)">
-                  <template></template>
+                  <template #trigger>
+                    <button class="p-1">
+                      <SvgIcon icon="ri:delete-bin-line" />
+                    </button>
+                  </template>
+                  {{ $t('chat.deleteHistoryConfirm') }}
                 </NPopconfirm>
               </template>
-              <template v-else></template>
             </div>
           </a>
         </div>

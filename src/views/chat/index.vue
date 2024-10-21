@@ -90,7 +90,7 @@
   </div>
 </template>
 <script setup lang='ts'>
-  import { useUseingContext } from '@/hooks/useUsingContext';
+  import { useUseingContext } from './hooks/useUsingContext';
   import HeaderComponent from './components/Header/index.vue';
   import { computed, ref } from 'vue';
   import { useDialog, useMessage, NButton, NAutoComplete, NInput } from 'naive-ui';
@@ -100,7 +100,7 @@
   import { useRoute } from 'vue-router';
   import { useBasicLayout } from '@/hooks/useBasicLayout'
   import { SvgIcon, HoverButton } from '@/components/common';
-  import { useChat } from '@/hooks/useChat';
+  import { useChat } from './hooks/useChat';
   import { storeToRefs } from 'pinia';
   const { usingContext, toggleUsingContext } = useUseingContext()
   import { useScroll } from './hooks/useScroll'
