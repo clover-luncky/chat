@@ -27,6 +27,19 @@
           {{ $t('common.save') }}
         </NButton>
       </div>
+      <div class="flex items-center space-x-4">
+        <span class="flex-shrink-0 w-[100px]">{{ $t('setting.description') }}</span>
+        <div class="w-[200px]">
+          <NInput v-model:value="description" placeholder="" />
+        </div>
+        <NButton
+          size="tiny"
+          text
+          type="primary"
+          @click="updateUserInfo({ description })">
+          {{ $t('common.save') }}
+        </NButton>
+      </div>
       <div 
         class="flex items-center space-x-4"
         :class="isMobile && 'items-start'">
@@ -108,6 +121,7 @@ const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
 const avatar = ref(userInfo.value.avatar ?? '')
 const name = ref(userInfo.value.name ?? '')
+const description = ref(userInfo.value.description ?? '')
 const ms = useMessage()
 const { isMobile } = useBasicLayout()
 const themeOptions: { label: string; key: Theme; icon: string }[] = [{

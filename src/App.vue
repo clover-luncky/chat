@@ -10,6 +10,7 @@
 
 <template>
   <NConfigProvider
+    class="h-full"
     :theme="theme"
     :theme-overrides="themeOverrides"
     :locale="language"

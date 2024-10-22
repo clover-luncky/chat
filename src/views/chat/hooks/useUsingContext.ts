@@ -3,7 +3,7 @@ import { useChatStore } from '@/store'
 import { useMessage } from 'naive-ui'
 import { computed } from 'vue'
 
-export function useUseingContext() {
+export function useUsingContext() {
     const ms = useMessage()
     const chatStore = useChatStore()
     const usingContext = computed<boolean>(() => chatStore.usingContext)

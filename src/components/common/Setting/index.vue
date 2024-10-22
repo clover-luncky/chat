@@ -38,6 +38,7 @@ import { computed, ref } from 'vue';
 import General from './General.vue'
 import Advanced from './Advanced.vue'
 import About from './About.vue'
+import { SvgIcon } from '@/components/common'
 
 interface Props {
   visible: boolean

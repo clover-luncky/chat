@@ -171,6 +171,22 @@ export const useChatStore = defineStore('chat-store', {
                 this.reloadRoute(uuid)
             }
         },
+        // 删除uuid
+        deleteChatByUuid(uuid: number, index: number) {
+            if(!uuid || uuid === 0) {
+                if(this.chat.length) {
+                    this.chat[0].data.splice(index, 1)
+                    this.recordState()
+                }
+                return
+            }
+            
+            const chatIndex = this.chat.findIndex(item => item.uuid === uuid)
+            if(chatIndex !== -1) {
+                this.chat[chatIndex].data.splice(index, 1)
+                this.recordState()
+            }
+        },
         // 更新缓存
         recordState() {
             setLocalState(this.$state)

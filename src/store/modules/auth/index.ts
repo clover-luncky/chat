@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { getToken, setToken, removeToken } from "./helper";
-import { Session } from "inspector";
+import { store } from "@/store/helper";
+import { fetchSession } from "@/api";
+
 
 interface SessionResponse {
     auth: boolean
@@ -43,3 +45,7 @@ export const useAuthStore = defineStore('auth-store', {
         }
     }
 })
+
+export function useAuthStoreWithout() {
+    return useAuthStore(store)
+}
